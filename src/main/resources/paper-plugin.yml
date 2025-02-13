@@ -1,0 +1,4 @@
+name: MagiCraft
+version: '1.0'
+main: io.github.matrixidot.magiCraft.MagiCraft
+api-version: '1.21'
