@@ -59,21 +59,6 @@ public abstract class BranchingNode extends SpellNode implements EventBranchPare
     @Override
     public abstract String getNodeType();
 
-    @Override
-    public JsonObject serialize() {
-        JsonObject obj = new JsonObject();
-        obj.add("nodeType", new JsonPrimitive(getNodeType()));
-        if (next != null) {
-            obj.add("next", next.serialize());
-        }
-        JsonArray branchArray = new JsonArray();
-        for (AbstractEventBranch branch : branches) {
-            branchArray.add(branch.serialize());
-        }
-        obj.add("branches", branchArray);
-        return obj;
-    }
-
     public void resetBranch() {
         triggered = false;
         for (AbstractEventBranch branch : branches) {

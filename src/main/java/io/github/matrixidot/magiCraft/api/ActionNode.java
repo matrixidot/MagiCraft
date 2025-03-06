@@ -13,14 +13,4 @@ public abstract class ActionNode extends SpellNode {
         performAction(context);
         if (next != null) next.execute(context);
     }
-
-    @Override
-    public JsonObject serialize() {
-        JsonObject obj = new JsonObject();
-        obj.add("nodeType", new JsonPrimitive(getNodeType()));
-        if (next != null) {
-            obj.add("next", next.serialize());
-        }
-        return obj;
-    }
 }

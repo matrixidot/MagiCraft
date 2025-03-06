@@ -23,9 +23,4 @@ public class DelayNode extends SpellNode {
     public String getNodeType() {
         return "DelayNode";
     }
-
-    @Override
-    public JsonObject serialize() {
-        return null;
-    }
 }

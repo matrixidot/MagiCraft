@@ -19,7 +19,4 @@ public abstract class SpellNode {
 
     // Return a unique identifier for this node type
     public abstract String getNodeType();
-
-    // Serialize to a JSON object
-    public abstract JsonObject serialize();
 }

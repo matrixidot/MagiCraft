@@ -38,9 +38,4 @@ public class DamageTakenFromEntityBranch extends AbstractEventBranch<EntityDamag
         unregister();
         parent.triggered(this, event);
     }
-
-    @Override
-    public JsonObject serialize() {
-        return null;
-    }
 }

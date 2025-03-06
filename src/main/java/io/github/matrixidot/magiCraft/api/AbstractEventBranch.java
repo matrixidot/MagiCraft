@@ -44,7 +44,4 @@ public abstract class AbstractEventBranch<T extends Event> implements Listener {
     public void unregister() {
         HandlerList.unregisterAll(this);
     }
-
-
-    public abstract JsonObject serialize();
 }

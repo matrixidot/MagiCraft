@@ -26,22 +26,4 @@ public class TeleportNode extends ActionNode {
     public String getNodeType() {
         return "TeleportNode";
     }
-
-    public static TeleportNode deserialize(JsonObject obj) {
-        TeleportNode node = new TeleportNode();
-        if (obj.has("next")) {
-            node.next = SpellSerializer.deserializeNode(obj.getAsJsonObject("next"));
-        }
-        return node;
-    }
-
-    @Override
-    public JsonObject serialize() {
-        JsonObject obj = new JsonObject();
-        obj.add("nodeType", new JsonPrimitive(getNodeType()));
-        if (next != null) {
-            obj.add("next", next.serialize());
-        }
-        return obj;
-    }
 }

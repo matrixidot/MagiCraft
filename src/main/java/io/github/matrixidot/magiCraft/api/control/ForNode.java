@@ -6,9 +6,7 @@ import com.google.gson.JsonPrimitive;
 import io.github.matrixidot.magiCraft.api.AbstractEventBranch;
 import io.github.matrixidot.magiCraft.api.BranchingNode;
 import io.github.matrixidot.magiCraft.api.SpellContext;
-import io.github.matrixidot.magiCraft.api.SpellSerializer;
 import org.bukkit.Bukkit;
-import org.bukkit.event.HandlerList;
 
 public class ForNode extends BranchingNode {
     private final long durationTicks;
@@ -53,37 +51,5 @@ public class ForNode extends BranchingNode {
     @Override
     public String getNodeType() {
         return "ForNode";
-    }
-
-    @Override
-    public JsonObject serialize() {
-        JsonObject obj = new JsonObject();
-        obj.add("nodeType", new JsonPrimitive(getNodeType()));
-        obj.addProperty("durationTicks", durationTicks);
-        // Serialize attached branches.
-        JsonArray branchArray = new JsonArray();
-        for (AbstractEventBranch branch : getBranches()) {
-            branchArray.add(branch.serialize());
-        }
-        obj.add("branches", branchArray);
-        if (next != null) {
-            obj.add("next", next.serialize());
-        }
-        return obj;
-    }
-
-    public static ForNode deserialize(JsonObject obj) {
-        long durationTicks = obj.get("durationTicks").getAsLong();
-        ForNode node = new ForNode(durationTicks);
-        JsonArray branchArray = obj.getAsJsonArray("branches");
-        for (int i = 0; i < branchArray.size(); i++) {
-            JsonObject branchObj = branchArray.get(i).getAsJsonObject();
-            AbstractEventBranch branch = SpellSerializer.deserializeEventBranch(branchObj);
-            node.addBranch(branch);
-        }
-        if (obj.has("next")) {
-            node.next = SpellSerializer.deserializeNode(obj.getAsJsonObject("next"));
-        }
-        return node;
     }
 }

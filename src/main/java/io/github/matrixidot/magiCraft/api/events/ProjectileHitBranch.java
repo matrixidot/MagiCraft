@@ -5,7 +5,6 @@ import com.google.gson.JsonPrimitive;
 import io.github.matrixidot.magiCraft.api.AbstractEventBranch;
 import io.github.matrixidot.magiCraft.api.SpellNode;
 import io.github.matrixidot.magiCraft.api.SpellPayloadKey;
-import io.github.matrixidot.magiCraft.api.SpellSerializer;
 import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -34,23 +33,5 @@ public class ProjectileHitBranch extends AbstractEventBranch<ProjectileHitEvent>
             parent.getContext().getPayload().put(SpellPayloadKey.ACTION_LOCATION, hitLocation);
         }
         parent.triggered(this, event);
-    }
-
-    @Override
-    public JsonObject serialize() {
-        JsonObject obj = new JsonObject();
-        obj.add("branchType", new JsonPrimitive("ProjectileHitBranch"));
-        if (getChildNode() != null) {
-            obj.add("childNode", getChildNode().serialize());
-        }
-        return obj;
-    }
-
-    public static ProjectileHitBranch deserialize(JsonObject obj) {
-        SpellNode child = null;
-        if (obj.has("childNode")) {
-            child = SpellSerializer.deserializeNode(obj.getAsJsonObject("childNode"));
-        }
-        return new ProjectileHitBranch(child);
     }
 }
