@@ -5,15 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class TypeConverterRegistry {
-    private static class TypePair {
-        final Class<?> source;
-        final Class<?> target;
-
-        TypePair(Class<?> source, Class<?> target) {
-            this.source = source;
-            this.target = target;
-        }
-    }
+    private record TypePair(Class<?> source, Class<?> target) {}
 
     private final Map<TypePair, Function<Object, Object>> converters = new HashMap<>();
 
