@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("com.github.johnrengelman.shadow") version "8.1.1"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.14"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.16"
     id("xyz.jpenilla.run-paper") version "2.3.1"
 }
 
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.5-R0.1-SNAPSHOT")
 }
 
 
@@ -36,5 +36,5 @@ tasks.processResources {
     }
 }
 tasks.runServer {
-    minecraftVersion("1.21.4")
+    minecraftVersion("1.21.5")
 }
